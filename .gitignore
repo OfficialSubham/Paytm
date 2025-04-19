@@ -15,7 +15,7 @@ build
 .swc/
 
 .env
-generated/prisma
+packages/db/generated/*
 # misc
 .DS_Store
 *.pem
