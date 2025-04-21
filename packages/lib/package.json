@@ -1,20 +1,20 @@
 {
-  "name": "api",
+  "name": "@repo/lib",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev -p 3001"
-  },
-  "dependencies": {
-    "@repo/db": "*",
-    "@repo/lib": "*",
-    "dotenv": "^16.5.0",
-    "next": "^15.3.1",
-    "next-auth": "^4.24.11"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "exports": {
+    "./auth": "./auth.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "next": "^15.3.1",
+    "next-auth": "^4.24.11"
+  }
 }

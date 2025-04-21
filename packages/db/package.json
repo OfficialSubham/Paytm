@@ -16,6 +16,6 @@
     "@prisma/client": "^6.6.0"
   },
   "exports": {
-    "./client": "./src/index.ts"
+    "./client": "./src/client.ts"
   }
 }
