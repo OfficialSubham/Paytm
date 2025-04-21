@@ -2,6 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
 import dotenv from "dotenv";
 import path from "path";
+import Facebook from "next-auth/providers/facebook";
 
 dotenv.config({
     path: path.resolve(`${process.cwd()}`, "../..",".env")
@@ -10,6 +11,7 @@ dotenv.config({
 export const NEXT_AUTH = {
     providers: [
         CredentialsProvider({
+            //All the login stuff
             name: "Email",
             credentials: {
                 username: {
@@ -34,6 +36,10 @@ export const NEXT_AUTH = {
             clientId: process.env.GOOGLE_ID || "",
             clientSecret: process.env.CLIENT_SECRET || ""
         }),
+        Facebook({
+            clientId: process.env.APP_ID || "",
+            clientSecret: process.env.APP_SECRET || ""
+        })
 
     ],
     secret: process.env.NEXTAUTH_SECRET,

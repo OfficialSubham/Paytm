@@ -9,7 +9,7 @@ const SignupPage = () => {
 
   return (
     <div className="w-screen bg-white/75 h-screen flex justify-center items-center px-5 md:px-0 text-white">
-      <div className="w-96 h-96 rounded-xl backdrop-blur-xl bg-gray-600 px-10 py-10">
+      <div className="w-96 rounded-xl backdrop-blur-xl bg-gray-600 px-10 py-10">
         <div>
           <h1 className="text-2xl font-bold text-white sm:text-3xl">
             Create an account
@@ -60,24 +60,47 @@ const SignupPage = () => {
               </div>
             </div>
           </div>
-          <button className="w-full bg-black mt-5 h-10 rounded-md cursor-pointer">Create Account</button>
-        </div>
-        {/* <div>
-          <button
-            className="bg-blue-400 p-4 rounded-2xl"
-            onClick={async () => {
-              try {
-                await signIn("google", {
-                  callbackUrl: "/",
-                });
-              } catch (error) {
-                console.log(error);
-              }
-            }}
-          >
-            Sign In with Google
+          <button className="w-full bg-black mt-5 h-10 rounded-md cursor-pointer hover:bg-black/80 transition-all">
+            Create Account
           </button>
-        </div> */}
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <div className="h-0.5 w-full bg-gray-500" />
+          <span className="w-full text-[12px]">Or register with</span>
+          <div className="h-0.5 w-full bg-gray-500" />
+        </div>
+        <div className="w-full flex items-center gap-3 mt-3">
+          <div className="w-full  hover:bg-white transition-all hover:text-black flex py-1 rounded-md justify-center border-gray-500 border">
+            <button
+              onClick={async () => {
+                try {
+                  await signIn("google", {
+                    callbackUrl: "/",
+                  });
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
+            >
+              Google
+            </button>
+          </div>
+          <div className="w-full flex py-1 rounded-md justify-center border-gray-500 border hover:bg-white transition-all hover:text-black">
+            <button
+              onClick={async () => {
+                try {
+                  await signIn("facebook", {
+                    callbackUrl: "http://localhost:3000"
+                  });
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
+            >
+              Facebook
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
