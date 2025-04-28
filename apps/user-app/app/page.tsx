@@ -1,14 +1,18 @@
-import { NEXT_AUTH } from "@repo/lib/auth";
-import { getServerSession } from "next-auth";
+"use client"
 
-export default async function Page() {
-  const session = await getServerSession(NEXT_AUTH);
+import { RootState } from "@repo/store/store";
+import { useSelector } from "react-redux";
+
+
+export default function Page() {
+  const balance = useSelector((state: RootState) => state.balance.value)
+
   return (
     <>
     <div>
-      {JSON.stringify(session)}
+
     </div>
-      <div className="text-4xl">hi there</div>
+      <div className="text-4xl">hi there {balance}</div>
     </>
   );
 }

@@ -12,12 +12,15 @@
   },
   "dependencies": {
     "@repo/db": "*",
-    "@repo/ui": "*",
     "@repo/lib": "*",
+    "@repo/store": "*",
+    "@repo/ui": "*",
     "next": "^15.3.0",
     "next-auth": "^4.24.11",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.3.0",

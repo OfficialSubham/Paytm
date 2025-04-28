@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@repo/db/client";
 import { signIn } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod"
+
 
 interface IBody {
     firstName: string;
@@ -14,6 +16,12 @@ interface IReq {
     body: IBody
 }
 
+const bodySchema = z.object({
+    firstName: z.string().min(1),
+    lastName: z.string().min(1),
+    email: z.string().email(),
+    password: z.string().min(6)
+}).strict()
 
 export async function POST(req: NextRequest) {
     const body = await req.json()
@@ -21,7 +29,8 @@ export async function POST(req: NextRequest) {
     const { firstName, lastName, email, password } = body;
 
     try {
-
+        const validUser = bodySchema.safeParse(body)
+        if (!validUser.success) return NextResponse.json({ message: "Enter Valid Credentials" })
         const user = await prisma.user.findUnique({
             where: {
                 email
@@ -48,7 +57,8 @@ export async function POST(req: NextRequest) {
             redirect: false,
             firstName,
             lastName,
-            email
+            email,
+            hashPassword
         })
 
         if (result?.error) {
