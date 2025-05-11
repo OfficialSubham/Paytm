@@ -3,7 +3,7 @@ import "@repo/ui/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Providers from "./Providers";
-import { Appbar } from "@repo/ui/AppBar";
+import { AppbarClient } from "../components/AppbarClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Appbar />
-          {children}
+          <AppbarClient />
+          <div className="h-[calc(100vh-4.15rem)]">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>

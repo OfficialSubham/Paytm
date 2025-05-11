@@ -5,7 +5,14 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true
   },
   "include": [
     "**/*.ts",

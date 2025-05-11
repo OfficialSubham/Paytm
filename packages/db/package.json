@@ -11,11 +11,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.6.0"
   },
   "exports": {
     "./client": "./src/client.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

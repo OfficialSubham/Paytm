@@ -25,6 +25,7 @@ model User {
   image             String?
   OnRampTransaction OnRampTransaction[]
   Balance           Balance?
+  authType          AuthType
 }
 
 model OnRampTransaction {
@@ -47,8 +48,9 @@ model Balance {
 }
 
 enum AuthType {
-  Facebook
-  Google
+  facebook
+  google
+  credentials
 }
 
 enum OnRampStatus {
