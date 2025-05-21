@@ -1,4 +1,6 @@
 import { PrismaClient } from "@repo/db/client"
+import { NEXT_AUTH } from "@repo/lib/auth";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server"
 const client = new PrismaClient();
 export const GET = async () => {
@@ -8,7 +10,9 @@ export const GET = async () => {
     //         name: "adsads"
     //     }
     // })
+    const session = await getServerSession(NEXT_AUTH);
     return NextResponse.json({
-        message: "hi there"
+        message: "hi there",
+        session
     })
 }

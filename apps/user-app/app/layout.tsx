@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <AppbarClient />
-          <div className="h-[calc(100vh-4.15rem)]">
+          <div className="h-[calc(100vh-4.2rem)]">
             {children}
           </div>
         </Providers>

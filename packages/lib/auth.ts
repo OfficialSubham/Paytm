@@ -6,6 +6,8 @@ import Facebook from "next-auth/providers/facebook";
 import z from "zod";
 import { prisma } from "@repo/db/client";
 import { compare, hash } from "bcryptjs"
+import { JWT } from "next-auth/jwt";
+import { Session } from "next-auth";
 
 
 dotenv.config({
@@ -155,49 +157,74 @@ export const NEXT_AUTH = {
         if (checkUserExist && checkUserExist.authType !== account.provider) {
           throw new Error("Invalid: account does not logged in with these credentials");
         }
-        if (checkUserExist) {
-          token.id = checkUserExist.id;
-          token.name = user.firstName + " " + user.lastName;
-          token.email = user.email;
-          token.image = user.image;
-        }
-        else {
-          const newUser = await prisma.user.create({
-            data: {
-              authType: account.provider,
-              email: user.email,
-              image: user.image,
-              firstName: user.name.split(" ")[0],
-              lastName: user.name.split(" ")[1]
+        // if (checkUserExist) {
+        //   token.id = checkUserExist.id;
+        //   token.name = user.firstName + " " + user.lastName;
+        //   token.email = user.email;
+        //   token.image = user.image;
+        // }
+        // else {
+        //   const newUser = await prisma.user.create({
+        //     data: {
+        //       authType: account.provider,
+        //       email: user.email,
+        //       image: user.image,
+        //       firstName: user.name.split(" ")[0],
+        //       lastName: user.name.split(" ")[1]
+        //     }
+        //   })
+        //   token.id = newUser.id;
+        //   token.name = `${user.name.split(" ")[0]} ${user.name.split(" ")[1]}` ;
+        //   token.email = newUser.email;
+        //   token.image = newUser.image;
+        // }
+        const finalUser = checkUserExist ?? await prisma.user.create({
+          data: {
+            authType: account.provider,
+            email: user.email,
+            image: user.image,
+            firstName: user.name.split(" ")[0],
+            lastName: user.name.split(" ")[1]
+          }
+        });
+
+        token.id = finalUser.id;
+        token.email = finalUser.email;
+        token.image = finalUser.image
+        token.name = `${finalUser.firstName} ${finalUser.lastName}`;
+
+      }
+      else {
+        if (!token.name || !token.id) {
+          const dbUser = await prisma.user.findUnique({
+            where: {
+              email: token.email
             }
           })
-          token.id = newUser.id;
-          token.name = newUser.firstName + " " + newUser.lastName;
-          token.email = newUser.email;
-          token.image = newUser.image;
+          console.log("REFRESH - TOKEN BEFORE DB SYNC", token);
+          if (dbUser) {
+            token.id = dbUser.id;
+            token.name = `${dbUser.firstName} ${dbUser.lastName}`
+            token.image = dbUser.image;
+          }
         }
 
-        return token;
-
       }
 
-      else if (user) {
-        token.id = user.id;
-        token.name = user.firstName + " " + user.lastName;
-        token.email = user.email;
-        token.image = user.image;
-      }
       console.log("TOKEN : ", token);
       return token;
     },
-    session: ({ session, token }: any) => {
+    async session ({ session, token, user }: { session: any, token: JWT, user: any }){
       console.log("SESSION : ", session);
-      session.user.name = token.name;
-      session.user.email = token.email;
-      session.user.id = token.id;
-      if (token.image) {
-        session.user.image = token.image;
+      console.log("TOKENNNN : ", token);
+      console.log(user)
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.id = token.id;
+        if (token.image) {
+          session.user.image = token.image;
       }
+      console.log("SESSION AFTER : ", session);
       return session;
     },
     redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
