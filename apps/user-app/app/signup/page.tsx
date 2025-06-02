@@ -102,7 +102,7 @@ const SignupPage = () => {
                 className="w-full bg-black mt-5 h-10 rounded-md cursor-pointer hover:bg-black/80 transition-all"
                 onClick={async () => {
                   const data = await signIn("credentials", userData)
-                  console.log("DATA : ", data)
+                  // console.log("DATA : ", data)
                 }}
               >
                 Create Account

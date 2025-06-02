@@ -15,7 +15,7 @@
     "@prisma/client": "^6.6.0"
   },
   "exports": {
-    "./client": "./src/client.ts"
+    "./client": "./dist/client.js"
   },
   "devDependencies": {
     "@repo/typescript-config": "*",

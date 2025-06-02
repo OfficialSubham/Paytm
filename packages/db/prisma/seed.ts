@@ -3,21 +3,27 @@ import { prisma } from "../src/client";
 async function main() {
   const alice = await prisma.user.upsert({
     where: {
-      email: "subham@subham.com"
+      email: "subhamoffi@gmail.com"
     },
     update: {},
     create: {
-      authType: "credentials",
-      email: "subham@subham.com",
-      firstName: "Alice",
+      authType: "google",
+      email: "subhamoffi@gmail.com",
+      firstName: "Alicexxx",
       lastName: "mondal",
       password: "123456",
+      Balance: {
+        create: {
+          amount: 20000,
+          locked: 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
           status: "Success",
           amount: 20000,
-          token: "122",
+          token: "12211",
           provider: "HDFC Bank"
         }
       }
@@ -26,21 +32,27 @@ async function main() {
 
   const bob = await prisma.user.upsert({
     where: {
-      email: "bob@bob.com",
+      email: "myselfsubhamxd@gmail.com",
     },
     update: {},
     create: {
-      authType: "credentials",
-      email: "bob@bob.com",
-      firstName: "Bob",
-      lastName: "oggy",
+      authType: "google",
+      email: "myselfsubhamxd@gmail.com",
+      firstName: "Bob Subham",
+      lastName: "oggy Mondal",
       password: "123456",
+      Balance: {
+        create: {
+          amount: 20000,
+          locked: 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
           status: "Failure",
           amount: 2000,
-          token: "123",
+          token: "12311",
           provider: "HDFC Bank"
         }
       }

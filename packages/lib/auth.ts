@@ -7,7 +7,7 @@ import z from "zod";
 import { prisma } from "@repo/db/client";
 import { compare, hash } from "bcryptjs"
 import { JWT } from "next-auth/jwt";
-import { Session } from "next-auth";
+
 
 
 dotenv.config({
@@ -144,8 +144,8 @@ export const NEXT_AUTH = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user, account }) {
-      console.log("USER : ", user);
-      console.log("ACCOUNT : ", account);
+      // console.log("USER : ", user);
+      // console.log("ACCOUNT : ", account);
 
       if (user && account) {
         //check weather the user already Existed then do your stuff
@@ -201,7 +201,7 @@ export const NEXT_AUTH = {
               email: token.email
             }
           })
-          console.log("REFRESH - TOKEN BEFORE DB SYNC", token);
+          // console.log("REFRESH - TOKEN BEFORE DB SYNC", token);
           if (dbUser) {
             token.id = dbUser.id;
             token.name = `${dbUser.firstName} ${dbUser.lastName}`
@@ -211,20 +211,20 @@ export const NEXT_AUTH = {
 
       }
 
-      console.log("TOKEN : ", token);
+      // console.log("TOKEN : ", token);
       return token;
     },
     async session ({ session, token, user }: { session: any, token: JWT, user: any }){
-      console.log("SESSION : ", session);
-      console.log("TOKENNNN : ", token);
-      console.log(user)
+      // console.log("SESSION : ", session);
+      // console.log("TOKENNNN : ", token);
+      // console.log(user)
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.id = token.id;
         if (token.image) {
           session.user.image = token.image;
       }
-      console.log("SESSION AFTER : ", session);
+      // console.log("SESSION AFTER : ", session);
       return session;
     },
     redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
@@ -240,7 +240,7 @@ export const NEXT_AUTH = {
       //   frontendURL.searchParams.set("error", error);
       // }
 
-      console.log("URL : ", url, "BASEURL : ", baseUrl)
+      // console.log("URL : ", url, "BASEURL : ", baseUrl)
 
       return baseUrl;
     }

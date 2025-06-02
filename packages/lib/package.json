@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "exports": {
-    "./auth": "./auth.ts"
+    "./auth": "./auth.ts",
+    "./actions/*": "./actions/*.ts"
   },
   "dependencies": {
     "@repo/db": "*",

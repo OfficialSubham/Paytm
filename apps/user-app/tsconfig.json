@@ -4,8 +4,9 @@
     "plugins": [
       {
         "name": "next"
-      }
+      },
     ],
+    "typeRoots": ["./node_modules/@types"],
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "bundler",
@@ -19,7 +20,8 @@
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "next-auth.d.ts"
   ],
   "exclude": ["node_modules"]
 }

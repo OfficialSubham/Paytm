@@ -4,5 +4,6 @@
     "moduleResolution": "nodenext",
     "module": "NodeNext",
     "typeRoots": ["./types", "./node_modules/@types"]
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../../packages/types"]
 }

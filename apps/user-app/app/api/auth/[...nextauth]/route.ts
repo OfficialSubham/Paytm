@@ -7,7 +7,7 @@ dotenv.config({
   path: path.resolve(`${process.cwd()}`, "../..", ".env")
 })
 
-console.log("DATABASE_URL : ", process.cwd())
+// console.log("DATABASE_URL : ", process.cwd())
 
 const handler = NextAuth(NEXT_AUTH);
 
