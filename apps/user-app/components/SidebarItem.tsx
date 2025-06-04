@@ -21,7 +21,7 @@ export const SidebarItem = ({ icon, href, title }: { icon: React.ReactNode, href
     <div className='flex items-center gap-5' onClick={() => {
       router.push(href)
     }}>
-      <span className={`flex items-center justify-center cursor-pointer`} style={{
+      <span className={`flex gap-5 items-center justify-center cursor-pointer`} style={{
         color: isSelected ? "#6a51a6" : "#000000"
       }}>
         {icon} {title}

@@ -101,7 +101,7 @@ const SignupPage = () => {
               <button
                 className="w-full bg-black mt-5 h-10 rounded-md cursor-pointer hover:bg-black/80 transition-all"
                 onClick={async () => {
-                  const data = await signIn("credentials", userData)
+                  await signIn("credentials", userData)
                   // console.log("DATA : ", data)
                 }}
               >
