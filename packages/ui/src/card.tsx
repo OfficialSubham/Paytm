@@ -9,7 +9,7 @@ export function Card({
 }) {
   return (
     <div className="w-full">
-      <div className="font-bold mb-4 ">
+      <div className="font-bold mt-1 mb-3">
         {title}
       </div>
       <div className="p-2 bg-gray-400/10 border rounded-md">

@@ -42,7 +42,7 @@ export const OnRampTransaction = ({
 
     return (
       <Card title="Recent Transaction">
-        <div className="w-full p-2 flex flex-col">
+        <div className="w-full p-2 flex flex-col max-h-[26rem] overflow-y-scroll">
           {transaction.map((t) => {
             console.log(t.status)
             return (
